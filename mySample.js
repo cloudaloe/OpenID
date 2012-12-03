@@ -61,6 +61,7 @@ var server = require('http').createServer(
     function(req, res)
     {
         var parsedUrl = url.parse(req.url);
+		console.log('Received request url ' + parsedURL + ', method=' + req.method);
         if(parsedUrl.pathname == '/google')
         { 
           // User supplied identifier
@@ -112,11 +113,10 @@ var server = require('http').createServer(
               //res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
               //  '\n\n' + JSON.stringify(result));
 			  console.log(JSON.stringify(result));
-			  console.log('Request method is ', req.method);
 			  
 			  if (result.authenticated)
 			  {
-			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier);
+			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier + '\nadditional data in the request\n: ' + JSON.stringify(result));
 			  }
 			  else
 			  {
