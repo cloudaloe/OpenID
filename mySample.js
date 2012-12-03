@@ -110,14 +110,18 @@ var server = require('http').createServer(
               //   "http://axschema.org/contact/email" if requested 
               //   and present at provider)
 			  
-              res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
-                '\n\n' + JSON.stringify(result));
-			  /*console.log(JSON.stringify(result));
+              //res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
+              //  '\n\n' + JSON.stringify(result));
+			  console.log(JSON.stringify(result));
 			  
 			  if (result.authenticated)
-			    res.end('authentication status: ', result.authenticated, ' the returned identity identifier is ', result.claimedIdentifier);
+			  {
+			    res.end('authentication status: ' + result.authenticated + ' the returned identity identifier is '+ result.claimedIdentifier);
+			  }
 			  else
-			    res.end("couldn't authenticate. ", JSON.stringify(result));*/
+			  {
+			    res.end("couldn't authenticate. " + JSON.stringify(result));*/
+			  }
             }
           });
         }
