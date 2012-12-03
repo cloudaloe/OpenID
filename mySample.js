@@ -62,7 +62,7 @@ var server = require('http').createServer(
     function(req, res)
     {
         var parsedUrl = url.parse(req.url);
-        if(parsedUrl.pathname == '/authenticate')
+        if(parsedUrl.pathname == '/google')
         { 
           // User supplied identifier
           var query = querystring.parse(parsedUrl.query);
@@ -120,9 +120,9 @@ var server = require('http').createServer(
             res.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8' });
             res.end('<!DOCTYPE html><html><body>'
                 + '<form method="get" action="/authenticate">'
-                + '<p>Login using OpenID</p>'
+                + "<p>Paste an OpenID login provider's endpoint below, or goto /google for google login</p>"
                 + '<input name="openid_identifier" />'
-                + '<input type="submit" value="Login" />'
+                + '<input type="submit" value="Go" />'
                 + '</form></body></html>');
         }
     });
