@@ -44,8 +44,7 @@ var extensions = [new openid.UserInterface(),
                       }),
                   new openid.AttributeExchange(
                       {
-                        "http://openid.net/schema/contact/internet/email": "required",
-                        "http://openid.net/schema/namePerson/friendly": "required",
+                        "http://schema.openid.net/contact/email": "required",
                         "http://openid.net/schema/namePerson/first": "required",
                         "http://openid.net/schema/namePerson/last": "required"
                       })];
@@ -55,7 +54,7 @@ var relyingParty = new openid.RelyingParty(
     null, // Realm (optional, specifies realm for OpenID authentication)
     false, // Use stateless verification
     false, // Strict mode
-    null); // List of extensions to enable and include // was 'extensions' before
+    extensions); // List of extensions to enable and include // was 'extensions' before
 
 
 var server = require('http').createServer(
@@ -113,6 +112,7 @@ var server = require('http').createServer(
               //res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
               //  '\n\n' + JSON.stringify(result));
 			  console.log(JSON.stringify(result));
+			  console.log('Request method is ', req.method);
 			  
 			  if (result.authenticated)
 			  {
