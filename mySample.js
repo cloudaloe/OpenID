@@ -51,7 +51,7 @@ var extensions = [new openid.UserInterface(),
                       })];
 
 var relyingParty = new openid.RelyingParty(
-    'http://example.com/verify', // Verification URL (yours)
+    'http://warm-anchorage-1114.herokuapp.com/', // Verification URL (yours)
     null, // Realm (optional, specifies realm for OpenID authentication)
     false, // Use stateless verification
     false, // Strict mode
