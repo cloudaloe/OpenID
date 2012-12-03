@@ -1,3 +1,5 @@
+// this is from node-openid's sample file. I modified it.
+
 /* A simple sample demonstrating OpenID for node.js
  *
  * http://ox.no/software/node-openid
@@ -116,7 +118,7 @@ var server = require('http').createServer(
 			  
 			  if (result.authenticated)
 			  {
-			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier + '\nadditional data in the request\n: ' + JSON.stringify(result));
+			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier + '\nall data of the request follows:\n ' + JSON.stringify(result));
 			  }
 			  else
 			  {
