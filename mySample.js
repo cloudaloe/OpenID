@@ -116,7 +116,7 @@ var server = require('http').createServer(
 			  
 			  if (result.authenticated)
 			  {
-			    res.end('authentication status: ' + result.authenticated + ' the returned identity identifier is '+ result.claimedIdentifier);
+			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier);
 			  }
 			  else
 			  {
