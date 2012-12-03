@@ -1,0 +1,11 @@
+{
+	"name": "OpenID",
+	"version": "0.0.1",
+	"dependencies": {
+		"openid": "0.4.2"
+	},
+	"engines": {
+		"node": "0.8.4",
+		"npm": "1.1.49"
+	}
+}
