@@ -120,7 +120,7 @@ var server = require('http').createServer(
 			  }
 			  else
 			  {
-			    res.end("couldn't authenticate. " + JSON.stringify(result));*/
+			    res.end("couldn't authenticate. " + JSON.stringify(result));
 			  }
             }
           });
