@@ -61,7 +61,7 @@ var server = require('http').createServer(
     function(req, res)
     {
         var parsedUrl = url.parse(req.url);
-		console.log('Received request url ' + parsedURL + ', method=' + req.method);
+		console.log('Received request url ' + parsedUrl + ', method=' + req.method);
         if(parsedUrl.pathname == '/google')
         { 
           // User supplied identifier
