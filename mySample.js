@@ -51,11 +51,11 @@ var extensions = [new openid.UserInterface(),
                       })];
 
 var relyingParty = new openid.RelyingParty(
-    'http://warm-anchorage-1114.herokuapp.com/verify', // Verification URL (yours)
+    'http://warm-anchorage-1114.herokuapp.com/verified', // url for the login service to return to
     null, // Realm (optional, specifies realm for OpenID authentication)
     false, // Use stateless verification
     false, // Strict mode
-    null); // List of extensions to enable and include
+    null); // List of extensions to enable and include // was 'extensions' before
 
 
 var server = require('http').createServer(
@@ -90,7 +90,7 @@ var server = require('http').createServer(
             }
           });
         }
-        else if(parsedUrl.pathname == '/verify')
+        else if(parsedUrl.pathname == '/verified')
         {
           // Verify identity assertion
           // NOTE: Passing just the URL is also possible
@@ -109,8 +109,15 @@ var server = require('http').createServer(
               // - answers from any extensions (e.g. 
               //   "http://axschema.org/contact/email" if requested 
               //   and present at provider)
-              res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
-                '\n\n' + JSON.stringify(result));
+			  
+              //res.end((result.authenticated ? 'Success :)' : 'Failure :(') +
+              //  '\n\n' + JSON.stringify(result));
+			  console.log(JSON.stringify(result));
+			  
+			  if (result.authenticated)
+			    res.end('authentication status: ', result.authenticated, ' the returned identity identifier is ', result.claimedIdentifier);
+			  else
+			    res.end("couldn't authenticate ", JSON.stringify(result));
             }
           });
         }
@@ -120,7 +127,7 @@ var server = require('http').createServer(
             res.writeHead(200, { 'Content-Type' : 'text/html; charset=utf-8' });
             res.end('<!DOCTYPE html><html><body>'
                 + '<form method="get" action="/authenticate">'
-                + "<p>Paste an OpenID login provider's endpoint below, or goto /google for google login</p>"
+                + "<p>Welcome. Go to /google for google login, or paste an OpenID login provider's endpoint below</p>"
                 + '<input name="openid_identifier" />'
                 + '<input type="submit" value="Go" />'
                 + '</form></body></html>');
