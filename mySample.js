@@ -1,4 +1,26 @@
+//
+// Important: for long term stability of the identifier received from Google
+//            it may be wise to pass an app identifier to Google rather than
+//	          receive a randomly salted identifier as implemented now, even
+//	          though it works as is now.
+//
 // this is from node-openid's sample file. I modified it.
+// Note that, the same flow can be probably implemented at half a day's work, 
+// by following the OpenID protocol while being aided by this example. Maybe a day's work,
+// if obtaining the user's email and name is required.
+//
+// Relevant links:
+// https://developers.google.com/accounts/docs/OpenID
+// https://developers.google.com/accounts/docs/OpenID#endpoint
+// http://openid.net/specs/openid-authentication-2_0.html#anchor45
+// https://github.com/havard/node-openid
+// http://goo.gl/HFO9Y (stackoverflow Retrieve OpenID AX attributes from Google)  
+//
+// The project is right now hosted on Heroku at http://warm-anchorage-1114.herokuapp.com/, 
+// and it cannot fully work locally (only partially), because Google needs to be able to redirect back
+// to the address supplied to it, and private network hosts are not reachable (DNS lookup..) to Google.
+// So this web server can reach Google, but Google can't reach it back unless it has a hosted DNS name.
+//
 
 /* A simple sample demonstrating OpenID for node.js
  *
@@ -118,7 +140,9 @@ var server = require('http').createServer(
 			  
 			  if (result.authenticated)
 			  {
-			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier + '\nall data of the request follows:\n ' + JSON.stringify(result));
+			    res.end('authentication status: ' + result.authenticated + '.\n' + 'the returned identity identifier is '+ result.claimedIdentifier + '\nall data of the request follows:\n ' + JSON.stringify(result)); // this prints all the attributes requested on top the login if any, such as
+				// users's first and last name, email address, or any other requested attribute from the 
+				// the Google or other account provider.
 			  }
 			  else
 			  {
