@@ -21,6 +21,9 @@
 // to the address supplied to it, and private network hosts are not reachable (DNS lookup..) to Google.
 // So this web server can reach Google, but Google can't reach it back unless it has a hosted DNS name.
 //
+// For a button that says 'login with Google' or the like, see excelent resources at:
+// http://stackoverflow.com/questions/9509475/free-standard-sign-in-with-google-button
+//
 
 /* A simple sample demonstrating OpenID for node.js
  *
